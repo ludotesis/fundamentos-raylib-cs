@@ -49,7 +49,7 @@ class Jugador
 
     public void Disparar(Proyectil proyectil)
     {
-        if (Raylib.IsKeyPressed(KeyboardKey.Space))
+        if (Raylib.IsKeyPressed(KeyboardKey.Space) && !proyectil.VerActivado())
         {
             Console.WriteLine("GENERAR DISPARO");
             proyectil.IniciarProyectil(posicion.X, posicion.Y);

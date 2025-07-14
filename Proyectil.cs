@@ -20,6 +20,8 @@ class Proyectil
     {
         posicion.X = posicionInicialX + sprite.Width / 2f;
         posicion.Y = posicionInicialY - sprite.Height / 2f;
+        hitbox.Y = posicion.Y;
+        hitbox.X = posicion.X;
         activado = true;
     }
 
@@ -28,11 +30,33 @@ class Proyectil
         sprite = Raylib.LoadTexture("Proyectil.png");
         hitbox = new Rectangle(posicion, sprite.Width, sprite.Height);
     }
-    
+
+    public void Mover(float deltaTime)
+    {
+        if (!activado) return;
+
+        if (posicion.Y > 0)
+        {
+            posicion.Y -= velocidad * deltaTime;
+        }
+        else
+        {
+            activado = false;
+        }
+
+        hitbox.Y = posicion.Y;
+        hitbox.X = posicion.X;
+    }
+
     public void Dibujar()
     {
         if (!activado) return;
 
         Raylib.DrawTextureV(sprite, posicion, Color.White);
+    }
+    
+    public bool VerActivado()
+    {
+        return activado;
     }
 }

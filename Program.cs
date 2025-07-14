@@ -11,7 +11,7 @@ class Program
 
         Jugador jugador = new Jugador(400, 240, 250f);
 
-        Proyectil proyectil = new Proyectil(50f);
+        Proyectil proyectil = new Proyectil(250f);
   
         float deltaTime = 0f;
 
@@ -34,6 +34,7 @@ class Program
             meteoro3.Mover(deltaTime);
 
             jugador.Disparar(proyectil);
+            proyectil.Mover(deltaTime);
 
             if (meteoro1.VerActivado() && jugador.CollisionJugador(meteoro1.hitbox))
             {
@@ -72,6 +73,7 @@ class Program
             if (Raylib.IsKeyDown(KeyboardKey.F10))
             {
                 Raylib.DrawRectangleRec(jugador.GetHibox(), Raylib.ColorAlpha(Color.Blue, 0.5f));
+                Raylib.DrawRectangleRec(proyectil.hitbox, Raylib.ColorAlpha(Color.Yellow, 0.5f));
                 Raylib.DrawRectangleRec(meteoro1.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
                 Raylib.DrawRectangleRec(meteoro2.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
                 Raylib.DrawRectangleRec(meteoro3.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
