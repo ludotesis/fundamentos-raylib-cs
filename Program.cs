@@ -7,25 +7,28 @@ class Program
     {
 
         Vector2 posicionJugador  = new Vector2(400, 240);
-        //Vector2 posicionMeteoro  = new Vector2(600, 240);
+  
         Meteoro meteoro1 = new Meteoro(600, 240);
+        Meteoro meteoro2 = new Meteoro(0, 240);
+        Meteoro meteoro3 = new Meteoro(300, 200);
 
         Rectangle hitboxJugador;       
-        //Rectangle hitboxMeteoro;  
 
         float deltaTime = 0f;
 
         Texture2D spriteJugador;
-        //Texture2D spriteMeteoro;
+
 
         Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
 
         spriteJugador = Raylib.LoadTexture("Jugador.png");
-        //spriteMeteoro = Raylib.LoadTexture("Meteoro.png");
+
         meteoro1.CargarSprite();
+        meteoro2.CargarSprite();
+        meteoro3.CargarSprite();
         
         hitboxJugador = new Rectangle(posicionJugador, spriteJugador.Width, spriteJugador.Height);
-        //hitboxMeteoro = new Rectangle(posicionMeteoro, spriteMeteoro.Width, spriteMeteoro.Height);
+       
 
         bool choqueJugadorMeteoro = false;
 
@@ -46,7 +49,18 @@ class Program
             hitboxJugador.X = posicionJugador.X;
             hitboxJugador.Y = posicionJugador.Y;
 
-            choqueJugadorMeteoro = Raylib.CheckCollisionRecs(hitboxJugador, meteoro1.hitbox);
+
+
+            if (Raylib.CheckCollisionRecs(hitboxJugador, meteoro1.hitbox) ||
+                Raylib.CheckCollisionRecs(hitboxJugador, meteoro2.hitbox) ||
+                Raylib.CheckCollisionRecs(hitboxJugador, meteoro3.hitbox))
+            {
+                choqueJugadorMeteoro = true;
+            }
+            else
+            {
+                choqueJugadorMeteoro = false;
+            }
 
             Raylib.BeginDrawing();
 
@@ -65,11 +79,15 @@ class Program
             {
                 Raylib.DrawRectangleRec(hitboxJugador, Raylib.ColorAlpha(Color.Blue, 0.5f));
                 Raylib.DrawRectangleRec(meteoro1.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
+                Raylib.DrawRectangleRec(meteoro2.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
+                Raylib.DrawRectangleRec(meteoro3.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
             }
             
             Raylib.DrawTextureV(spriteJugador, posicionJugador, Color.White);
-            //Raylib.DrawTextureV(spriteMeteoro, posicionMeteoro, Color.White);
+
             meteoro1.Dibujar();
+            meteoro2.Dibujar();
+            meteoro3.Dibujar();
 
             Raylib.EndDrawing();
         }
