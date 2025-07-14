@@ -1,11 +1,16 @@
 ﻿using Raylib_cs;
+using System.Numerics;
 
 class Program
 {
     public static void Main()
     {
-        Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
 
+        Vector2 posicion  = new Vector2(400, 240);
+        Vector2 dimension = new Vector2(200, 220);
+
+        Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
+     
         while (!Raylib.WindowShouldClose())
         {
             Raylib.BeginDrawing();
@@ -13,7 +18,7 @@ class Program
             Raylib.ClearBackground(Color.White);
             Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
 
-            Raylib.DrawRectangle(400, 240, 200, 200, Color.DarkBrown);
+            Raylib.DrawRectangleV(posicion, dimension, Color.DarkBrown);
 
             Raylib.EndDrawing();
         }
