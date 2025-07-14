@@ -29,21 +29,20 @@ class Program
             meteoro2.Mover(deltaTime);
             meteoro3.Mover(deltaTime);
 
+            jugador.Disparar();
+
             if (meteoro1.VerActivado() && jugador.CollisionJugador(meteoro1.hitbox))
             {
-                //jugador.vidas--;
                 jugador.Herir();
                 meteoro1.Desactivar();
             }
             else if (meteoro2.VerActivado() && jugador.CollisionJugador(meteoro2.hitbox))
             {
-                //jugador.vidas--;
                 jugador.Herir();
                 meteoro2.Desactivar();
             }
             else if (meteoro3.VerActivado() && jugador.CollisionJugador(meteoro3.hitbox))
             {
-                //jugador.vidas--;
                 jugador.Herir();
                 meteoro3.Desactivar();
             }

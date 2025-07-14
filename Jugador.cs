@@ -47,6 +47,14 @@ class Jugador
             hitbox.Y = posicion.Y;
     }
 
+    public void Disparar()
+    {
+       if (Raylib.IsKeyPressed(KeyboardKey.Space))
+       {
+            Console.WriteLine("GENERAR DISPARO");
+       }
+    }
+
     public bool CollisionJugador(Rectangle otroHitbox)
     {
         return Raylib.CheckCollisionRecs(hitbox, otroHitbox);
