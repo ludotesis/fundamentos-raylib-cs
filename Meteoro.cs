@@ -9,33 +9,42 @@ class Meteoro
     public Rectangle hitbox;
 
     float velocidad;
+    float margen;
 
     bool activado;
 
-    public Meteoro(float posicionInicialX, float posicionInicialY, float velocidad)
+    int minimoX;
+    int maximoX;
+
+    public Meteoro(float posicionInicialX, float posicionInicialY, float velocidad, int minimoX, int maximoX)
     {
         posicion.X = posicionInicialX;
         posicion.Y = posicionInicialY;
         posicionInicial = posicion;
         activado = true;
         this.velocidad = velocidad;
+        this.minimoX = minimoX;
+        this.maximoX = maximoX;
     }
 
     public void CargarSprite()
     {
         sprite = Raylib.LoadTexture("Meteoro.png");
         hitbox = new Rectangle(posicion, sprite.Width, sprite.Height);
+        margen = sprite.Height / 2f;
     }
 
     public void Mover(float deltaTime)
     {
+        if (!activado) return;
+
         if (posicion.Y < 480)
         {
             posicion.Y += velocidad * deltaTime;
         }
         else
         {
-            posicion.Y = posicionInicial.Y;
+            Desactivar();
         }
 
         hitbox.Y = posicion.Y;
@@ -51,7 +60,10 @@ class Meteoro
 
     public void Desactivar()
     {
-        activado = false;
+        posicion.Y = posicionInicial.Y - margen;
+        posicion.X = Raylib.GetRandomValue(minimoX, maximoX);
+        hitbox.Y = posicion.Y;
+        hitbox.X = posicion.X;
     }
 
     public bool VerActivado()

@@ -3,11 +3,7 @@ using System.Numerics;
 
 class Jugador
 {
-    
-    
-
     Vector2 posicion;
-    Vector2 posicionInicial;
     Texture2D sprite;
     Rectangle hitbox;
 
@@ -20,7 +16,6 @@ class Jugador
     {
         posicion.X = posicionInicialX;
         posicion.Y = posicionInicialY;
-        posicionInicial = posicion;
         activado = true;
         this.velocidad = velocidad;
     }
@@ -47,12 +42,13 @@ class Jugador
             hitbox.Y = posicion.Y;
     }
 
-    public void Disparar()
+    public void Disparar(Proyectil proyectil)
     {
-       if (Raylib.IsKeyPressed(KeyboardKey.Space))
-       {
+        if (Raylib.IsKeyPressed(KeyboardKey.Space) && !proyectil.VerActivado())
+        {
             Console.WriteLine("GENERAR DISPARO");
-       }
+            proyectil.IniciarProyectil(posicion.X, posicion.Y);
+        }
     }
 
     public bool CollisionJugador(Rectangle otroHitbox)
