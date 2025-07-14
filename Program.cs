@@ -6,7 +6,7 @@ class Program
     public static void Main()
     {
 
-        Vector2 posicion  = new Vector2(0, 240);
+        Vector2 posicion  = new Vector2(400, 240);
         Vector2 dimension = new Vector2(200, 220);
 
         float deltaTime = 0f;
@@ -17,7 +17,15 @@ class Program
         {
             deltaTime = Raylib.GetFrameTime();
 
-            posicion.X = posicion.X + 100f * deltaTime;
+            if (Raylib.IsKeyDown(KeyboardKey.D))
+            {
+                posicion.X = posicion.X + 100f * deltaTime;
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.A))
+            {
+                posicion.X = posicion.X - 100f * deltaTime;
+            }
 
             Raylib.BeginDrawing();
 
