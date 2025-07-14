@@ -18,8 +18,8 @@ class Proyectil
 
     public void IniciarProyectil(float posicionInicialX, float posicionInicialY)
     {
-        posicion.X = posicionInicialX;
-        posicion.Y = posicionInicialY;
+        posicion.X = posicionInicialX + sprite.Width / 2f;
+        posicion.Y = posicionInicialY - sprite.Height / 2f;
         activado = true;
     }
 

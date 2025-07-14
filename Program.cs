@@ -10,16 +10,20 @@ class Program
         Meteoro meteoro3 = new Meteoro(200, 0, 200f);
 
         Jugador jugador = new Jugador(400, 240, 250f);
+
+        Proyectil proyectil = new Proyectil(50f);
   
         float deltaTime = 0f;
 
         Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
 
         jugador.CargarSprite();
+        proyectil.CargarSprite();
         
         meteoro1.CargarSprite();
         meteoro2.CargarSprite();
         meteoro3.CargarSprite();
+        
         while (!Raylib.WindowShouldClose())
         {
             deltaTime = Raylib.GetFrameTime();
@@ -29,7 +33,7 @@ class Program
             meteoro2.Mover(deltaTime);
             meteoro3.Mover(deltaTime);
 
-            jugador.Disparar();
+            jugador.Disparar(proyectil);
 
             if (meteoro1.VerActivado() && jugador.CollisionJugador(meteoro1.hitbox))
             {
@@ -46,24 +50,24 @@ class Program
                 jugador.Herir();
                 meteoro3.Desactivar();
             }
-          
+
             Raylib.BeginDrawing();
 
             Raylib.ClearBackground(Color.White);
 
             if (jugador.VerVidas() >= 0)
             {
-                Raylib.DrawText("Vidas "+jugador.VerVidas(), 500, 10, 50, Color.DarkPurple);    
+                Raylib.DrawText("Vidas " + jugador.VerVidas(), 500, 10, 50, Color.DarkPurple);
             }
 
-            if (jugador.VerVidas()  == 0)
+            if (jugador.VerVidas() == 0)
             {
                 Raylib.DrawText("Game Over", 12, 12, 60, Color.Red);
             }
             else
             {
                 Raylib.DrawText("Subscribite", 12, 12, 60, Color.DarkGreen);
-            }            
+            }
 
             if (Raylib.IsKeyDown(KeyboardKey.F10))
             {
@@ -74,6 +78,7 @@ class Program
             }
 
             jugador.Dibujar();
+            proyectil.Dibujar();
 
             meteoro1.Dibujar();
             meteoro2.Dibujar();
