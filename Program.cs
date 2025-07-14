@@ -29,34 +29,35 @@ class Program
             meteoro2.Mover(deltaTime);
             meteoro3.Mover(deltaTime);
 
-            //if (meteoro1.VerActivado() && Raylib.CheckCollisionRecs(jugador.hitbox, meteoro1.hitbox))
             if (meteoro1.VerActivado() && jugador.CollisionJugador(meteoro1.hitbox))
             {
-                jugador.vidas--;
+                //jugador.vidas--;
+                jugador.Herir();
                 meteoro1.Desactivar();
             }
             else if (meteoro2.VerActivado() && jugador.CollisionJugador(meteoro2.hitbox))
             {
-                jugador.vidas--;
+                //jugador.vidas--;
+                jugador.Herir();
                 meteoro2.Desactivar();
             }
             else if (meteoro3.VerActivado() && jugador.CollisionJugador(meteoro3.hitbox))
             {
-                jugador.vidas--;
+                //jugador.vidas--;
+                jugador.Herir();
                 meteoro3.Desactivar();
             }
-
           
             Raylib.BeginDrawing();
 
             Raylib.ClearBackground(Color.White);
 
-            if (jugador.vidas >= 0)
+            if (jugador.VerVidas() >= 0)
             {
-                Raylib.DrawText("Vidas "+jugador.vidas, 500, 10, 50, Color.DarkPurple);    
+                Raylib.DrawText("Vidas "+jugador.VerVidas(), 500, 10, 50, Color.DarkPurple);    
             }
 
-            if (jugador.vidas == 0)
+            if (jugador.VerVidas()  == 0)
             {
                 Raylib.DrawText("Game Over", 12, 12, 60, Color.Red);
             }
@@ -67,7 +68,7 @@ class Program
 
             if (Raylib.IsKeyDown(KeyboardKey.F10))
             {
-                Raylib.DrawRectangleRec(jugador.hitbox, Raylib.ColorAlpha(Color.Blue, 0.5f));
+                Raylib.DrawRectangleRec(jugador.GetHibox(), Raylib.ColorAlpha(Color.Blue, 0.5f));
                 Raylib.DrawRectangleRec(meteoro1.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
                 Raylib.DrawRectangleRec(meteoro2.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
                 Raylib.DrawRectangleRec(meteoro3.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));

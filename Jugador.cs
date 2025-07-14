@@ -3,14 +3,17 @@ using System.Numerics;
 
 class Jugador
 {
-    public Rectangle hitbox;
-    public int vidas = 3;
+    
+    
 
     Vector2 posicion;
     Vector2 posicionInicial;
     Texture2D sprite;
-    
+    Rectangle hitbox;
+
     float velocidad;
+    int vidas = 3;
+
     bool activado;
     
     public Jugador(float posicionInicialX, float posicionInicialY, float velocidad)
@@ -48,7 +51,6 @@ class Jugador
     {
         return Raylib.CheckCollisionRecs(hitbox, otroHitbox);
     }
-    
 
     public void Dibujar()
     {
@@ -57,6 +59,26 @@ class Jugador
             Raylib.DrawTextureV(sprite, posicion, Color.White);
         }
     }
+
+    public void Herir()
+    {
+        vidas--;
+        if (vidas == 0)
+        {
+            Desactivar();
+        }
+    }
+
+    public int VerVidas()
+    {
+        return vidas;
+    }
+
+    public Rectangle GetHibox()
+    {
+        return hitbox;
+    }
+
 
     public void Desactivar()
     {
