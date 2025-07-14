@@ -13,6 +13,8 @@ class Program
             Raylib.ClearBackground(Color.White);
             Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
 
+            Raylib.DrawRectangle(400, 240, 200, 200, Color.DarkBrown);
+
             Raylib.EndDrawing();
         }
 
