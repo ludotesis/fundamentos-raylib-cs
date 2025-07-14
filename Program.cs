@@ -11,8 +11,12 @@ class Program
 
         float deltaTime = 0f;
 
+        Texture2D sprite;
+
         Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
-     
+
+        sprite = Raylib.LoadTexture("Jugador.png");
+
         while (!Raylib.WindowShouldClose())
         {
             deltaTime = Raylib.GetFrameTime();
@@ -32,7 +36,8 @@ class Program
             Raylib.ClearBackground(Color.White);
             Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
 
-            Raylib.DrawRectangleV(posicion, dimension, Color.DarkBrown);
+            //Raylib.DrawRectangleV(posicion, dimension, Color.DarkBrown);
+            Raylib.DrawTextureV(sprite, posicion, Color.White);
 
             Raylib.EndDrawing();
         }
