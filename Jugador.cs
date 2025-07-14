@@ -44,6 +44,12 @@ class Jugador
             hitbox.Y = posicion.Y;
     }
 
+    public bool CollisionJugador(Rectangle otroHitbox)
+    {
+        return Raylib.CheckCollisionRecs(hitbox, otroHitbox);
+    }
+    
+
     public void Dibujar()
     {
         if (activado)
