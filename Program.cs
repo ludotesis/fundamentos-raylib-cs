@@ -5,9 +5,9 @@ class Program
     public static void Main()
     {
 
-        Meteoro meteoro1 = new Meteoro(100f, 0f, 100f);
-        Meteoro meteoro2 = new Meteoro(330f, 0f, 150f);
-        Meteoro meteoro3 = new Meteoro(628f, 0f, 200f);
+        Meteoro meteoro1 = new Meteoro(100f, 0f, 100f,0, 200);
+        Meteoro meteoro2 = new Meteoro(330f, 0f, 150f,250,430);
+        Meteoro meteoro3 = new Meteoro(628f, 0f, 200f,500,672);
 
         Jugador jugador = new Jugador(400, 480, 250f);
 

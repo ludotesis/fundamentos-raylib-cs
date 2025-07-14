@@ -13,13 +13,18 @@ class Meteoro
 
     bool activado;
 
-    public Meteoro(float posicionInicialX, float posicionInicialY, float velocidad)
+    int minimoX;
+    int maximoX;
+
+    public Meteoro(float posicionInicialX, float posicionInicialY, float velocidad, int minimoX, int maximoX)
     {
         posicion.X = posicionInicialX;
         posicion.Y = posicionInicialY;
         posicionInicial = posicion;
         activado = true;
         this.velocidad = velocidad;
+        this.minimoX = minimoX;
+        this.maximoX = maximoX;
     }
 
     public void CargarSprite()
@@ -56,7 +61,7 @@ class Meteoro
     public void Desactivar()
     {
         posicion.Y = posicionInicial.Y - margen;
-        posicion.X = Raylib.GetRandomValue(0, 672);
+        posicion.X = Raylib.GetRandomValue(minimoX, maximoX);
         hitbox.Y = posicion.Y;
         hitbox.X = posicion.X;
     }
