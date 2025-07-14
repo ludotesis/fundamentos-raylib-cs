@@ -5,7 +5,7 @@ class Meteoro
 {
     Vector2 posicion;
     Texture2D sprite;
-    Rectangle hitbox;
+    public Rectangle hitbox;
 
     public Meteoro(float posicionInicialX, float posicionInicialY)
     {

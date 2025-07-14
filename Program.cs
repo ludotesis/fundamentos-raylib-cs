@@ -7,23 +7,25 @@ class Program
     {
 
         Vector2 posicionJugador  = new Vector2(400, 240);
-        Vector2 posicionMeteoro  = new Vector2(600, 240);
+        //Vector2 posicionMeteoro  = new Vector2(600, 240);
+        Meteoro meteoro1 = new Meteoro(600, 240);
 
         Rectangle hitboxJugador;       
-        Rectangle hitboxMeteoro;  
+        //Rectangle hitboxMeteoro;  
 
         float deltaTime = 0f;
 
         Texture2D spriteJugador;
-        Texture2D spriteMeteoro;
+        //Texture2D spriteMeteoro;
 
         Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
 
         spriteJugador = Raylib.LoadTexture("Jugador.png");
-        spriteMeteoro = Raylib.LoadTexture("Meteoro.png");
+        //spriteMeteoro = Raylib.LoadTexture("Meteoro.png");
+        meteoro1.CargarSprite();
         
         hitboxJugador = new Rectangle(posicionJugador, spriteJugador.Width, spriteJugador.Height);
-        hitboxMeteoro = new Rectangle(posicionMeteoro, spriteMeteoro.Width, spriteMeteoro.Height);
+        //hitboxMeteoro = new Rectangle(posicionMeteoro, spriteMeteoro.Width, spriteMeteoro.Height);
 
         bool choqueJugadorMeteoro = false;
 
@@ -44,7 +46,7 @@ class Program
             hitboxJugador.X = posicionJugador.X;
             hitboxJugador.Y = posicionJugador.Y;
 
-            choqueJugadorMeteoro = Raylib.CheckCollisionRecs(hitboxJugador, hitboxMeteoro);
+            choqueJugadorMeteoro = Raylib.CheckCollisionRecs(hitboxJugador, meteoro1.hitbox);
 
             Raylib.BeginDrawing();
 
@@ -62,11 +64,12 @@ class Program
             if (Raylib.IsKeyDown(KeyboardKey.F10))
             {
                 Raylib.DrawRectangleRec(hitboxJugador, Raylib.ColorAlpha(Color.Blue, 0.5f));
-                Raylib.DrawRectangleRec(hitboxMeteoro, Raylib.ColorAlpha(Color.Green, 0.5f));
+                Raylib.DrawRectangleRec(meteoro1.hitbox, Raylib.ColorAlpha(Color.Green, 0.5f));
             }
             
             Raylib.DrawTextureV(spriteJugador, posicionJugador, Color.White);
-            Raylib.DrawTextureV(spriteMeteoro, posicionMeteoro, Color.White);
+            //Raylib.DrawTextureV(spriteMeteoro, posicionMeteoro, Color.White);
+            meteoro1.Dibujar();
 
             Raylib.EndDrawing();
         }
