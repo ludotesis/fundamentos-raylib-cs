@@ -8,7 +8,9 @@ class Program
 
         Vector2 posicionJugador  = new Vector2(400, 240);
         Vector2 posicionMeteoro  = new Vector2(600, 240);
-       
+
+        Rectangle hitboxJugador;       
+        Rectangle hitboxMeteoro;  
 
         float deltaTime = 0f;
 
@@ -19,6 +21,11 @@ class Program
 
         spriteJugador = Raylib.LoadTexture("Jugador.png");
         spriteMeteoro = Raylib.LoadTexture("Meteoro.png");
+        
+        hitboxJugador = new Rectangle(posicionJugador, spriteJugador.Width, spriteJugador.Height);
+        hitboxMeteoro = new Rectangle(posicionMeteoro, spriteMeteoro.Width, spriteMeteoro.Height);
+
+        bool choqueJugadorMeteoro = false;
 
         while (!Raylib.WindowShouldClose())
         {
@@ -34,11 +41,23 @@ class Program
                 posicionJugador.X = posicionJugador.X - 100f * deltaTime;
             }
 
+            hitboxJugador.X = posicionJugador.X;
+            hitboxJugador.Y = posicionJugador.Y;
+
+            choqueJugadorMeteoro = Raylib.CheckCollisionRecs(hitboxJugador, hitboxMeteoro);
+
             Raylib.BeginDrawing();
 
             Raylib.ClearBackground(Color.White);
-            Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
 
+            if (choqueJugadorMeteoro)
+            {
+                Raylib.DrawText("COLISIÓN", 12, 12, 60, Color.Green);
+            }
+            else
+            {
+                Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
+            }
             
             Raylib.DrawTextureV(spriteJugador, posicionJugador, Color.White);
             Raylib.DrawTextureV(spriteMeteoro, posicionMeteoro, Color.White);
