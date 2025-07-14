@@ -48,15 +48,25 @@ class Proyectil
         hitbox.X = posicion.X;
     }
 
+    public bool CollisionProyectil(Rectangle otroHitbox)
+    {
+        return Raylib.CheckCollisionRecs(hitbox, otroHitbox);
+    }
+
     public void Dibujar()
     {
         if (!activado) return;
 
         Raylib.DrawTextureV(sprite, posicion, Color.White);
     }
-    
+
     public bool VerActivado()
     {
         return activado;
+    }
+    
+    public void Desactivar()
+    {
+        activado = false;
     }
 }

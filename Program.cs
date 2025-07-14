@@ -9,13 +9,13 @@ class Program
         Meteoro meteoro2 = new Meteoro(0, 0, 150f);
         Meteoro meteoro3 = new Meteoro(200, 0, 200f);
 
-        Jugador jugador = new Jugador(400, 240, 250f);
+        Jugador jugador = new Jugador(400, 480, 250f);
 
         Proyectil proyectil = new Proyectil(250f);
   
         float deltaTime = 0f;
 
-        Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
+        Raylib.InitWindow(800, 600, "Introducción Raylib + C#");
 
         jugador.CargarSprite();
         proyectil.CargarSprite();
@@ -49,6 +49,22 @@ class Program
             else if (meteoro3.VerActivado() && jugador.CollisionJugador(meteoro3.hitbox))
             {
                 jugador.Herir();
+                meteoro3.Desactivar();
+            }
+
+            if (proyectil.VerActivado() && meteoro1.VerActivado() && proyectil.CollisionProyectil(meteoro1.hitbox))
+            {
+                proyectil.Desactivar();
+                meteoro1.Desactivar();
+            }
+            else if (proyectil.VerActivado() && meteoro2.VerActivado() && proyectil.CollisionProyectil(meteoro2.hitbox))
+            {
+                proyectil.Desactivar();
+                meteoro2.Desactivar();
+            }
+            else if (proyectil.VerActivado() && meteoro3.VerActivado() && proyectil.CollisionProyectil(meteoro3.hitbox))
+            {
+                proyectil.Desactivar();
                 meteoro3.Desactivar();
             }
 
