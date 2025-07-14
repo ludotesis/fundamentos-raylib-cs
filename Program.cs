@@ -58,6 +58,7 @@ class Program
             {
                 choqueJugadorMeteoro = true;
                 vidas--;
+                meteoro1.Desactivar();
             }
             else
             {

@@ -7,10 +7,13 @@ class Meteoro
     Texture2D sprite;
     public Rectangle hitbox;
 
+    bool activado;
+
     public Meteoro(float posicionInicialX, float posicionInicialY)
     {
         posicion.X = posicionInicialX;
         posicion.Y = posicionInicialY;
+        activado = true;
     }
 
     public void CargarSprite()
@@ -21,6 +24,19 @@ class Meteoro
 
     public void Dibujar()
     {
-        Raylib.DrawTextureV(sprite, posicion, Color.White);
+        if (activado)
+        {
+            Raylib.DrawTextureV(sprite, posicion, Color.White);
+        }
+    }
+
+    public void Desactivar()
+    {
+        activado = false;
+    }
+
+    public bool VerActivado()
+    {
+        return activado;
     }
 }
