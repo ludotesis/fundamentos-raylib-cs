@@ -29,9 +29,6 @@ class Program
         meteoro3.CargarSprite();
         
         hitboxJugador = new Rectangle(posicionJugador, spriteJugador.Width, spriteJugador.Height);
-       
-
-        bool choqueJugadorMeteoro = false;
 
         while (!Raylib.WindowShouldClose())
         {
@@ -52,55 +49,38 @@ class Program
 
             if (meteoro1.VerActivado() && Raylib.CheckCollisionRecs(hitboxJugador, meteoro1.hitbox))
             {
-                choqueJugadorMeteoro = true;
                 vidas--;
                 meteoro1.Desactivar();
             }
             else if (meteoro2.VerActivado() && Raylib.CheckCollisionRecs(hitboxJugador, meteoro2.hitbox))
             {
-                choqueJugadorMeteoro = true;
                 vidas--;
                 meteoro2.Desactivar();
             }
             else if (meteoro3.VerActivado() && Raylib.CheckCollisionRecs(hitboxJugador, meteoro3.hitbox))
             {
-                choqueJugadorMeteoro = true;
                 vidas--;
                 meteoro3.Desactivar();
             }
-            /*
-            if (Raylib.CheckCollisionRecs(hitboxJugador, meteoro1.hitbox) ||
-                Raylib.CheckCollisionRecs(hitboxJugador, meteoro2.hitbox) ||
-                Raylib.CheckCollisionRecs(hitboxJugador, meteoro3.hitbox))
-            {
-                choqueJugadorMeteoro = true;
-                vidas--;
-                meteoro1.Desactivar();
-            }
-            else
-            {
-                choqueJugadorMeteoro = false;
-            }
-            */
 
+          
             Raylib.BeginDrawing();
 
             Raylib.ClearBackground(Color.White);
-
-            if (choqueJugadorMeteoro)
-            {
-                Raylib.DrawText("COLISIÓN", 12, 12, 60, Color.Green);
-            }
-            else
-            {
-                Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
-            }
 
             if (vidas >= 0)
             {
                 Raylib.DrawText("Vidas "+vidas, 500, 10, 50, Color.DarkPurple);    
             }
-            
+
+            if (vidas == 0)
+            {
+                Raylib.DrawText("Game Over", 12, 12, 60, Color.Red);
+            }
+            else
+            {
+                Raylib.DrawText("Subscribite", 12, 12, 60, Color.DarkGreen);
+            }            
 
             if (Raylib.IsKeyDown(KeyboardKey.F10))
             {
