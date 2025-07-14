@@ -9,6 +9,7 @@ class Meteoro
     public Rectangle hitbox;
 
     float velocidad;
+    float margen;
 
     bool activado;
 
@@ -25,6 +26,7 @@ class Meteoro
     {
         sprite = Raylib.LoadTexture("Meteoro.png");
         hitbox = new Rectangle(posicion, sprite.Width, sprite.Height);
+        margen = sprite.Height / 2f;
     }
 
     public void Mover(float deltaTime)
@@ -53,8 +55,7 @@ class Meteoro
 
     public void Desactivar()
     {
-        //activado = false;
-        posicion.Y = posicionInicial.Y;
+        posicion.Y = posicionInicial.Y - margen;
     }
 
     public bool VerActivado()

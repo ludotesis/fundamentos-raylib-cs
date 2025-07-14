@@ -8,6 +8,8 @@ class Proyectil
     public Rectangle hitbox;
 
     float velocidad;
+    float margen;
+
     bool activado;
 
     public Proyectil(float velocidad)
@@ -18,8 +20,8 @@ class Proyectil
 
     public void IniciarProyectil(float posicionInicialX, float posicionInicialY)
     {
-        posicion.X = posicionInicialX + sprite.Width / 2f;
-        posicion.Y = posicionInicialY - sprite.Height / 2f;
+        posicion.X = posicionInicialX + margen;
+        posicion.Y = posicionInicialY - margen;
         hitbox.Y = posicion.Y;
         hitbox.X = posicion.X;
         activado = true;
@@ -29,6 +31,7 @@ class Proyectil
     {
         sprite = Raylib.LoadTexture("Proyectil.png");
         hitbox = new Rectangle(posicion, sprite.Width, sprite.Height);
+        margen = sprite.Height / 2f;
     }
 
     public void Mover(float deltaTime)
