@@ -7,10 +7,11 @@ class Program
     {
 
         Vector2 posicionJugador  = new Vector2(400, 240);
+        int vidas = 3;
   
         Meteoro meteoro1 = new Meteoro(600, 240);
         Meteoro meteoro2 = new Meteoro(0, 240);
-        Meteoro meteoro3 = new Meteoro(300, 200);
+        Meteoro meteoro3 = new Meteoro(200, 200);
 
         Rectangle hitboxJugador;       
 
@@ -56,6 +57,7 @@ class Program
                 Raylib.CheckCollisionRecs(hitboxJugador, meteoro3.hitbox))
             {
                 choqueJugadorMeteoro = true;
+                vidas--;
             }
             else
             {
@@ -74,6 +76,12 @@ class Program
             {
                 Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
             }
+
+            if (vidas > 0)
+            {
+                Raylib.DrawText("Vidas "+vidas, 500, 10, 50, Color.DarkPurple);    
+            }
+            
 
             if (Raylib.IsKeyDown(KeyboardKey.F10))
             {
