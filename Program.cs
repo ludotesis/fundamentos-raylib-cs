@@ -11,7 +11,7 @@ class Program
 
         Jugador jugador = new Jugador(400, 480, 250f);
 
-        Proyectil proyectil = new Proyectil(250f);
+        Proyectil proyectil = new Proyectil(400f);
   
         float deltaTime = 0f;
 

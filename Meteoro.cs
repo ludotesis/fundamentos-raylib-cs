@@ -29,13 +29,15 @@ class Meteoro
 
     public void Mover(float deltaTime)
     {
+        if (!activado) return;
+
         if (posicion.Y < 480)
         {
             posicion.Y += velocidad * deltaTime;
         }
         else
         {
-            posicion.Y = posicionInicial.Y;
+            Desactivar();
         }
 
         hitbox.Y = posicion.Y;
@@ -51,7 +53,8 @@ class Meteoro
 
     public void Desactivar()
     {
-        activado = false;
+        //activado = false;
+        posicion.Y = posicionInicial.Y;
     }
 
     public bool VerActivado()

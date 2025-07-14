@@ -3,11 +3,7 @@ using System.Numerics;
 
 class Jugador
 {
-    
-    
-
     Vector2 posicion;
-    Vector2 posicionInicial;
     Texture2D sprite;
     Rectangle hitbox;
 
@@ -20,7 +16,6 @@ class Jugador
     {
         posicion.X = posicionInicialX;
         posicion.Y = posicionInicialY;
-        posicionInicial = posicion;
         activado = true;
         this.velocidad = velocidad;
     }
