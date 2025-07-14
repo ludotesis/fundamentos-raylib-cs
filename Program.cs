@@ -50,8 +50,25 @@ class Program
             hitboxJugador.X = posicionJugador.X;
             hitboxJugador.Y = posicionJugador.Y;
 
-
-
+            if (meteoro1.VerActivado() && Raylib.CheckCollisionRecs(hitboxJugador, meteoro1.hitbox))
+            {
+                choqueJugadorMeteoro = true;
+                vidas--;
+                meteoro1.Desactivar();
+            }
+            else if (meteoro2.VerActivado() && Raylib.CheckCollisionRecs(hitboxJugador, meteoro2.hitbox))
+            {
+                choqueJugadorMeteoro = true;
+                vidas--;
+                meteoro2.Desactivar();
+            }
+            else if (meteoro3.VerActivado() && Raylib.CheckCollisionRecs(hitboxJugador, meteoro3.hitbox))
+            {
+                choqueJugadorMeteoro = true;
+                vidas--;
+                meteoro3.Desactivar();
+            }
+            /*
             if (Raylib.CheckCollisionRecs(hitboxJugador, meteoro1.hitbox) ||
                 Raylib.CheckCollisionRecs(hitboxJugador, meteoro2.hitbox) ||
                 Raylib.CheckCollisionRecs(hitboxJugador, meteoro3.hitbox))
@@ -64,6 +81,7 @@ class Program
             {
                 choqueJugadorMeteoro = false;
             }
+            */
 
             Raylib.BeginDrawing();
 
@@ -78,7 +96,7 @@ class Program
                 Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
             }
 
-            if (vidas > 0)
+            if (vidas >= 0)
             {
                 Raylib.DrawText("Vidas "+vidas, 500, 10, 50, Color.DarkPurple);    
             }
