@@ -56,6 +56,9 @@ class Meteoro
     public void Desactivar()
     {
         posicion.Y = posicionInicial.Y - margen;
+        posicion.X = Raylib.GetRandomValue(0, 672);
+        hitbox.Y = posicion.Y;
+        hitbox.X = posicion.X;
     }
 
     public bool VerActivado()
