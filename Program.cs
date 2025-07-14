@@ -9,9 +9,9 @@ class Program
         Vector2 posicionJugador  = new Vector2(400, 240);
         int vidas = 3;
   
-        Meteoro meteoro1 = new Meteoro(600, 0);
-        Meteoro meteoro2 = new Meteoro(0, 0);
-        Meteoro meteoro3 = new Meteoro(200, 0);
+        Meteoro meteoro1 = new Meteoro(600, 0, 100f);
+        Meteoro meteoro2 = new Meteoro(0, 0, 150f);
+        Meteoro meteoro3 = new Meteoro(200, 0, 200f);
 
         Rectangle hitboxJugador;       
 

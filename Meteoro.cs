@@ -8,14 +8,17 @@ class Meteoro
     Texture2D sprite;
     public Rectangle hitbox;
 
+    float velocidad;
+
     bool activado;
 
-    public Meteoro(float posicionInicialX, float posicionInicialY)
+    public Meteoro(float posicionInicialX, float posicionInicialY, float velocidad)
     {
         posicion.X = posicionInicialX;
         posicion.Y = posicionInicialY;
         posicionInicial = posicion;
         activado = true;
+        this.velocidad = velocidad;
     }
 
     public void CargarSprite()
@@ -28,7 +31,7 @@ class Meteoro
     {
         if (posicion.Y < 480)
         {
-            posicion.Y += 50f * deltaTime;
+            posicion.Y += velocidad * deltaTime;
         }
         else
         {
