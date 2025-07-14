@@ -58,6 +58,12 @@ class Program
             {
                 Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
             }
+
+            if (Raylib.IsKeyDown(KeyboardKey.F10))
+            {
+                Raylib.DrawRectangleRec(hitboxJugador, Raylib.ColorAlpha(Color.Blue, 0.5f));
+                Raylib.DrawRectangleRec(hitboxMeteoro, Raylib.ColorAlpha(Color.Green, 0.5f));
+            }
             
             Raylib.DrawTextureV(spriteJugador, posicionJugador, Color.White);
             Raylib.DrawTextureV(spriteMeteoro, posicionMeteoro, Color.White);
