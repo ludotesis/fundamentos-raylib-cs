@@ -6,16 +6,19 @@ class Program
     public static void Main()
     {
 
-        Vector2 posicion  = new Vector2(400, 240);
-        Vector2 dimension = new Vector2(200, 220);
+        Vector2 posicionJugador  = new Vector2(400, 240);
+        Vector2 posicionMeteoro  = new Vector2(600, 240);
+       
 
         float deltaTime = 0f;
 
-        Texture2D sprite;
+        Texture2D spriteJugador;
+        Texture2D spriteMeteoro;
 
         Raylib.InitWindow(800, 480, "Introducción Raylib + C#");
 
-        sprite = Raylib.LoadTexture("Jugador.png");
+        spriteJugador = Raylib.LoadTexture("Jugador.png");
+        spriteMeteoro = Raylib.LoadTexture("Meteoro.png");
 
         while (!Raylib.WindowShouldClose())
         {
@@ -23,12 +26,12 @@ class Program
 
             if (Raylib.IsKeyDown(KeyboardKey.D))
             {
-                posicion.X = posicion.X + 100f * deltaTime;
+                posicionJugador.X = posicionJugador.X + 100f * deltaTime;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.A))
             {
-                posicion.X = posicion.X - 100f * deltaTime;
+                posicionJugador.X = posicionJugador.X - 100f * deltaTime;
             }
 
             Raylib.BeginDrawing();
@@ -36,8 +39,9 @@ class Program
             Raylib.ClearBackground(Color.White);
             Raylib.DrawText("Subscribite", 12, 12, 60, Color.Red);
 
-            //Raylib.DrawRectangleV(posicion, dimension, Color.DarkBrown);
-            Raylib.DrawTextureV(sprite, posicion, Color.White);
+            
+            Raylib.DrawTextureV(spriteJugador, posicionJugador, Color.White);
+            Raylib.DrawTextureV(spriteMeteoro, posicionMeteoro, Color.White);
 
             Raylib.EndDrawing();
         }
