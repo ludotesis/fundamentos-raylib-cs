@@ -56,16 +56,19 @@ class Program
             {
                 jugador.Herir();
                 meteoro1.Desactivar();
+                proyectil.ColisionSFX();
             }
             else if (meteoro2.VerActivado() && jugador.CollisionJugador(meteoro2.hitbox))
             {
                 jugador.Herir();
                 meteoro2.Desactivar();
+                proyectil.ColisionSFX();
             }
             else if (meteoro3.VerActivado() && jugador.CollisionJugador(meteoro3.hitbox))
             {
                 jugador.Herir();
                 meteoro3.Desactivar();
+                proyectil.ColisionSFX();
             }
 
             if (proyectil.VerActivado() && meteoro1.VerActivado() && proyectil.CollisionProyectil(meteoro1.hitbox))

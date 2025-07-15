@@ -92,7 +92,7 @@ class Proyectil
         }
     }
 
-    void ColisionSFX()
+    public void ColisionSFX()
     {
         if (!Raylib.IsSoundPlaying(sonidoColision))
         {
