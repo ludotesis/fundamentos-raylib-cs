@@ -90,7 +90,7 @@ class Program
 
             if (jugador.VerVidas() >= 0)
             {
-                Raylib.DrawText("Vidas " + jugador.VerVidas(), 500, 10, 50, Color.DarkPurple);
+                Raylib.DrawText("Vidas " + jugador.VerVidas(), 600, 10, 50, Color.DarkPurple);
             }
 
             if (jugador.VerVidas() == 0)
@@ -99,7 +99,7 @@ class Program
             }
             else
             {
-                Raylib.DrawText("Subscribite", 12, 12, 60, Color.DarkGreen);
+                Raylib.DrawText("Raylib + C# 101", 12, 12, 50, Color.DarkGreen);
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.F10))
