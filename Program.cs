@@ -15,6 +15,9 @@ class Program
   
         float deltaTime = 0f;
 
+        Music musicaFondo;
+        float volumenMusica  = 0.8f;
+
         Raylib.InitWindow(800, 600, "Introducción Raylib + C#");
   
         jugador.CargarSprite();
@@ -23,10 +26,18 @@ class Program
         meteoro1.CargarSprite();
         meteoro2.CargarSprite();
         meteoro3.CargarSprite();
+
+        Raylib.InitAudioDevice();
+
+        musicaFondo = Raylib.LoadMusicStream("Music.wav");
+        Raylib.SetMusicVolume(musicaFondo, volumenMusica);
+        Raylib.PlayMusicStream(musicaFondo);
         
         while (!Raylib.WindowShouldClose())
         {
             deltaTime = Raylib.GetFrameTime();
+
+            Raylib.UpdateMusicStream(musicaFondo);
 
             jugador.Mover(deltaTime);
             meteoro1.Mover(deltaTime);
@@ -104,6 +115,10 @@ class Program
 
             Raylib.EndDrawing();
         }
+
+        Raylib.UnloadMusicStream(musicaFondo);
+        Raylib.CloseAudioDevice();
+
         Raylib.CloseWindow();
     }
 }
