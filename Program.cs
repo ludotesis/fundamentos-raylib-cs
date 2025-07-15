@@ -2,31 +2,47 @@
 
 class Program
 {
+    public const int ANCHO_VENTANA = 800;
+    public const int ALTO_VENTANA  = 600;
+
     public static void Main()
     {
 
-        Meteoro meteoro1 = new Meteoro(100f, 0f, 100f,0, 200);
-        Meteoro meteoro2 = new Meteoro(330f, 0f, 150f,250,430);
-        Meteoro meteoro3 = new Meteoro(628f, 0f, 200f,500,672);
+        Meteoro meteoro1 = new Meteoro(100f, 0f, 100f, 0, 200);
+        Meteoro meteoro2 = new Meteoro(330f, 0f, 150f, 250, 430);
+        Meteoro meteoro3 = new Meteoro(628f, 0f, 200f, 500, 672);
 
         Jugador jugador = new Jugador(400, 480, 250f);
 
         Proyectil proyectil = new Proyectil(400f);
-  
+
         float deltaTime = 0f;
 
-        Raylib.InitWindow(800, 600, "Introducción Raylib + C#");
-  
+        Music musicaFondo;
+        float volumenMusica = 0.8f;
+
+        Raylib.InitWindow(ANCHO_VENTANA, ALTO_VENTANA, "Introducción Raylib + C#");
+
         jugador.CargarSprite();
         proyectil.CargarSprite();
-        
+
         meteoro1.CargarSprite();
         meteoro2.CargarSprite();
         meteoro3.CargarSprite();
-        
+
+        Raylib.InitAudioDevice();
+
+        musicaFondo = Raylib.LoadMusicStream("Music.wav");
+        Raylib.SetMusicVolume(musicaFondo, volumenMusica);
+        Raylib.PlayMusicStream(musicaFondo);
+
+        proyectil.InicializarSFX();
+
         while (!Raylib.WindowShouldClose())
         {
             deltaTime = Raylib.GetFrameTime();
+
+            Raylib.UpdateMusicStream(musicaFondo);
 
             jugador.Mover(deltaTime);
             meteoro1.Mover(deltaTime);
@@ -40,16 +56,19 @@ class Program
             {
                 jugador.Herir();
                 meteoro1.Desactivar();
+                proyectil.ColisionSFX();
             }
             else if (meteoro2.VerActivado() && jugador.CollisionJugador(meteoro2.hitbox))
             {
                 jugador.Herir();
                 meteoro2.Desactivar();
+                proyectil.ColisionSFX();
             }
             else if (meteoro3.VerActivado() && jugador.CollisionJugador(meteoro3.hitbox))
             {
                 jugador.Herir();
                 meteoro3.Desactivar();
+                proyectil.ColisionSFX();
             }
 
             if (proyectil.VerActivado() && meteoro1.VerActivado() && proyectil.CollisionProyectil(meteoro1.hitbox))
@@ -70,11 +89,11 @@ class Program
 
             Raylib.BeginDrawing();
 
-            Raylib.ClearBackground(Color.White);
+            Raylib.ClearBackground(Color.Black);
 
             if (jugador.VerVidas() >= 0)
             {
-                Raylib.DrawText("Vidas " + jugador.VerVidas(), 500, 10, 50, Color.DarkPurple);
+                Raylib.DrawText("Vidas " + jugador.VerVidas(), 600, 10, 50, Color.DarkPurple);
             }
 
             if (jugador.VerVidas() == 0)
@@ -83,7 +102,7 @@ class Program
             }
             else
             {
-                Raylib.DrawText("Subscribite", 12, 12, 60, Color.DarkGreen);
+                Raylib.DrawText("Raylib + C# 101", 12, 12, 50, Color.DarkGreen);
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.F10))
@@ -104,6 +123,11 @@ class Program
 
             Raylib.EndDrawing();
         }
+
+        Raylib.UnloadMusicStream(musicaFondo);
+        proyectil.DeInicializarSFX();
+        Raylib.CloseAudioDevice();
+
         Raylib.CloseWindow();
     }
 }
