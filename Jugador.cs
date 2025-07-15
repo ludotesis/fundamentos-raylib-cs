@@ -11,7 +11,7 @@ class Jugador
     int vidas = 3;
 
     bool activado;
-    
+
     public Jugador(float posicionInicialX, float posicionInicialY, float velocidad)
     {
         posicion.X = posicionInicialX;
@@ -28,18 +28,18 @@ class Jugador
 
     public void Mover(float deltaTime)
     {
-         if (Raylib.IsKeyDown(KeyboardKey.D))
-            {
-                posicion.X = posicion.X + velocidad * deltaTime;
-            }
+        if (Raylib.IsKeyDown(KeyboardKey.D))
+        {
+            posicion.X = posicion.X + velocidad * deltaTime;
+        }
 
-            if (Raylib.IsKeyDown(KeyboardKey.A))
-            {
-                posicion.X = posicion.X - velocidad * deltaTime;
-            }
+        if (Raylib.IsKeyDown(KeyboardKey.A))
+        {
+            posicion.X = posicion.X - velocidad * deltaTime;
+        }
 
-            hitbox.X = posicion.X;
-            hitbox.Y = posicion.Y;
+        hitbox.X = posicion.X;
+        hitbox.Y = posicion.Y;
     }
 
     public void Disparar(Proyectil proyectil)

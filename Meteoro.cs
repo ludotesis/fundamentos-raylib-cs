@@ -10,6 +10,7 @@ class Meteoro
 
     float velocidad;
     float margen;
+    float maximoY;
 
     bool activado;
 
@@ -32,13 +33,14 @@ class Meteoro
         sprite = Raylib.LoadTexture("Meteoro.png");
         hitbox = new Rectangle(posicion, sprite.Width, sprite.Height);
         margen = sprite.Height / 2f;
+        maximoY = Program.ALTO_VENTANA + sprite.Height;
     }
 
     public void Mover(float deltaTime)
     {
         if (!activado) return;
 
-        if (posicion.Y < 480)
+        if (posicion.Y < maximoY)
         {
             posicion.Y += velocidad * deltaTime;
         }

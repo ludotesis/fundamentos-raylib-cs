@@ -2,27 +2,30 @@
 
 class Program
 {
+    public const int ANCHO_VENTANA = 800;
+    public const int ALTO_VENTANA  = 600;
+
     public static void Main()
     {
 
-        Meteoro meteoro1 = new Meteoro(100f, 0f, 100f,0, 200);
-        Meteoro meteoro2 = new Meteoro(330f, 0f, 150f,250,430);
-        Meteoro meteoro3 = new Meteoro(628f, 0f, 200f,500,672);
+        Meteoro meteoro1 = new Meteoro(100f, 0f, 100f, 0, 200);
+        Meteoro meteoro2 = new Meteoro(330f, 0f, 150f, 250, 430);
+        Meteoro meteoro3 = new Meteoro(628f, 0f, 200f, 500, 672);
 
         Jugador jugador = new Jugador(400, 480, 250f);
 
         Proyectil proyectil = new Proyectil(400f);
-  
+
         float deltaTime = 0f;
 
         Music musicaFondo;
-        float volumenMusica  = 0.8f;
+        float volumenMusica = 0.8f;
 
-        Raylib.InitWindow(800, 600, "Introducción Raylib + C#");
-  
+        Raylib.InitWindow(ANCHO_VENTANA, ALTO_VENTANA, "Introducción Raylib + C#");
+
         jugador.CargarSprite();
         proyectil.CargarSprite();
-        
+
         meteoro1.CargarSprite();
         meteoro2.CargarSprite();
         meteoro3.CargarSprite();
@@ -83,7 +86,7 @@ class Program
 
             Raylib.BeginDrawing();
 
-            Raylib.ClearBackground(Color.White);
+            Raylib.ClearBackground(Color.Black);
 
             if (jugador.VerVidas() >= 0)
             {
