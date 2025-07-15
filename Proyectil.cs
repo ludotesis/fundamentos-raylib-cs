@@ -12,6 +12,9 @@ class Proyectil
 
     bool activado;
 
+    Sound sonidoColision;
+    Sound sonidoDisparo;
+
     public Proyectil(float velocidad)
     {
         activado = false;
@@ -25,6 +28,7 @@ class Proyectil
         hitbox.Y = posicion.Y;
         hitbox.X = posicion.X;
         activado = true;
+        DisparoSFX();
     }
 
     public void CargarSprite()
@@ -67,9 +71,38 @@ class Proyectil
     {
         return activado;
     }
-    
+
     public void Desactivar()
     {
         activado = false;
+        ColisionSFX();
+    }
+
+    public void InicializarSFX()
+    {
+        sonidoColision = Raylib.LoadSound("Impact.mp3");
+        sonidoDisparo = Raylib.LoadSound("Shoot.mp3");
+    }
+
+    void DisparoSFX()
+    {
+        if (!Raylib.IsSoundPlaying(sonidoDisparo))
+        {
+            Raylib.PlaySound(sonidoDisparo);
+        }
+    }
+
+    void ColisionSFX()
+    {
+        if (!Raylib.IsSoundPlaying(sonidoColision))
+        {
+            Raylib.PlaySound(sonidoColision);
+        }
+    }
+    
+    public void DeInicializarSFX()
+    {
+        Raylib.UnloadSound(sonidoColision);
+        Raylib.UnloadSound(sonidoDisparo);
     }
 }

@@ -32,7 +32,9 @@ class Program
         musicaFondo = Raylib.LoadMusicStream("Music.wav");
         Raylib.SetMusicVolume(musicaFondo, volumenMusica);
         Raylib.PlayMusicStream(musicaFondo);
-        
+
+        proyectil.InicializarSFX();
+
         while (!Raylib.WindowShouldClose())
         {
             deltaTime = Raylib.GetFrameTime();
@@ -117,6 +119,7 @@ class Program
         }
 
         Raylib.UnloadMusicStream(musicaFondo);
+        proyectil.DeInicializarSFX();
         Raylib.CloseAudioDevice();
 
         Raylib.CloseWindow();
