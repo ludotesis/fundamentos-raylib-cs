@@ -10,6 +10,8 @@ class Animacion
     int totalFrames;
     int columnas;
     int filas;
+    int frameAncho;
+    int frameAlto;
 
     Texture2D spritesheet;
     Rectangle frame;
@@ -28,7 +30,14 @@ class Animacion
     public void CargarSpritesheet(string ruta)
     {
         spritesheet = Raylib.LoadTexture(ruta);
-        frame = new Rectangle(0, 0, spritesheet.Width / columnas, spritesheet.Height / filas);
+
+        frameAncho = spritesheet.Width / columnas;
+        frameAlto = spritesheet.Height / filas;
+
+        Console.WriteLine(frameAncho);
+        Console.WriteLine(frameAlto);
+
+        frame = new Rectangle(0, 0, frameAncho, frameAlto);
     }
 
     public void Actualizar(float delta)
@@ -51,8 +60,8 @@ class Animacion
             int x = frameActual % columnas;
             int y = frameActual / columnas;
 
-            frame.X = x * frame.Width;
-            frame.Y = y * frame.Height;
+            frame.X = x * frameAncho;
+            frame.Y = y * frameAlto;
         }
     }
 
